@@ -1,0 +1,16 @@
+function printPlaywrightStepSummary(steps) {
+  const totalSteps = steps.length;
+  const passedCount = steps.filter(s => s.status === "passed").length;
+  const failedSteps = steps.filter(s => s.status === "failed");
+  const failedCount = failedSteps.length;
+  const skippedCount = steps.filter(s => s.status === "skipped").length;
+  const totalDuration = steps.reduce((sum, s) => sum + (s.durationMs || 0), 0);
+  const failedNames = failedSteps.map(s => s.name).join(", ");
+
+  console.log(`Total steps: ${totalSteps}`);
+  console.log(`Passed: ${passedCount}`);
+  console.log(`Failed: ${failedCount}`);
+  console.log(`Skipped: ${skippedCount}`);
+  console.log(`Total duration: ${totalDuration} ms`);
+  console.log(`Failed steps: ${failedNames}`);
+}
